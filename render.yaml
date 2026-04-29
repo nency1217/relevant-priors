@@ -1,0 +1,11 @@
+# Render.com deployment config — push this repo to GitHub then click
+# "New + Blueprint" in Render and point at the repo.
+services:
+  - type: web
+    name: relevant-priors
+    env: python
+    plan: free
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "uvicorn app:app --host 0.0.0.0 --port $PORT"
+    healthCheckPath: /health
+    autoDeploy: true
